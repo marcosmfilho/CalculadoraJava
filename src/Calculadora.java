@@ -20,24 +20,24 @@ import widgets.BotaoOperacao;
 public class Calculadora extends JFrame implements ActionListener {
 
     JLabel lblTelaVisor;
-    
+
     /**
      * Buffer contendo um valor armazenado
      */
     double buffer = 0;
-    
+
     /**
      * Último botão de operação clicado
      */
     String lastOperation = "";
-    
+
     public Calculadora() {
 
         super( "Calculadora" );
-        
+
         Container container = getContentPane();
         container.setLayout( new BorderLayout() );
-        
+
         container.add( getPainelCalculadora(), BorderLayout.CENTER );
 
         setSize( 412, 360);
@@ -48,11 +48,11 @@ public class Calculadora extends JFrame implements ActionListener {
         Calculadora calculadora = new Calculadora();
         calculadora.setVisible( true );
     }
-    
+
     private JComponent getPainelCalculadora() {
         JPanel painel = new JPanel();
         painel.setLayout( null );
-        
+
         /*
          * Adiciona o visor
          */
@@ -62,12 +62,12 @@ public class Calculadora extends JFrame implements ActionListener {
         lblTelaVisor.setForeground( Color.BLUE );
         lblTelaVisor.setFont( new Font("Monospace", Font.BOLD, 50) );
         lblTelaVisor.setHorizontalAlignment(JLabel.RIGHT);
-        lblTelaVisor.setBorder( BorderFactory.createEtchedBorder() );   
+        lblTelaVisor.setBorder( BorderFactory.createEtchedBorder() );
         painel.add( lblTelaVisor );
-        
+
         /*
          * Adiciona os botões de números,
-         * Note que apenas o primeiro botão tem uma posuição fixa, 
+         * Note que apenas o primeiro botão tem uma posuição fixa,
          * todos os demais fica relativos à um anterior.
          */
         BotaoNumero botao7 = new BotaoNumero(7, this);
@@ -110,7 +110,7 @@ public class Calculadora extends JFrame implements ActionListener {
         botao0.setWidth( botao0.getWidth() *3 + botao0.getPadding() *2 );   //usa o espaço de três botões
         botao0.placeIn(botao1, "bottom");
         painel.add( botao0 );
-        
+
         /*
          * Adiciona os botões de operações.
          * O posicionamento se dá da mesma forma do que com os de números.
@@ -130,14 +130,14 @@ public class Calculadora extends JFrame implements ActionListener {
         BotaoOperacao botaoSub = new BotaoOperacao("-", this, "sub");
         botaoSub.placeIn(botaoSum, "bottom");
         painel.add( botaoSub );
-        
+
         /*
          * Adiciona os botões de limpar e igual
          */
         BotaoLimpar botaoClear = new BotaoLimpar("C", this);
         botaoClear.placeIn(botaoDiv, "right");
         painel.add( botaoClear );
-        
+
         BotaoIgual botaoEqual = new BotaoIgual("=", this);
         botaoEqual.setHeight( botaoEqual.getHeight() * 3 + botaoEqual.getPadding() *2 );
         botaoEqual.placeIn(botaoClear, "bottom");
@@ -150,12 +150,12 @@ public class Calculadora extends JFrame implements ActionListener {
      * Executa a ação, dependendo do botão pressionado
      */
     public void actionPerformed(ActionEvent ev) {
-        
+
     	/**
     	 * Valor atualmente exibido no visor
     	 */
     	double valor = Double.parseDouble( lblTelaVisor.getText() );
-    	
+
         switch ( ev.getActionCommand() ) {
         case "botaonumero":
             /*
@@ -164,7 +164,7 @@ public class Calculadora extends JFrame implements ActionListener {
              */
             BotaoNumero botaoNum = (BotaoNumero) ev.getSource();
             valor = valor * 10 + botaoNum.getNumber(); //*10 para "saltar" uma casa à esquerda
-            
+
             lblTelaVisor.setText( String.valueOf(valor) );
             break;
 
@@ -172,17 +172,17 @@ public class Calculadora extends JFrame implements ActionListener {
             BotaoOperacao botaoOpe = (BotaoOperacao) ev.getSource();
 
         	calcula();
-        	
+
         	//tenho que garantir que o valor esteja atualizado
         	valor = Double.parseDouble( lblTelaVisor.getText() );
-        	
+
         	//joga o valor do visor para o buffer e zera o vizor
         	buffer = valor;
         	lblTelaVisor.setText( String.valueOf(0.0) );
-            
+
             //guarda a operação escolhida
             lastOperation = botaoOpe.getOperation();
-            
+
             break;
 
         case "botaoigual":
@@ -201,7 +201,7 @@ public class Calculadora extends JFrame implements ActionListener {
             break;
         }
     }
-    
+
     /**
      * Executa o cálculo pendente,
      * com base nos dados disponíveis no buffer, lastOperation e lblTelaVisor
@@ -211,6 +211,7 @@ public class Calculadora extends JFrame implements ActionListener {
     	 * Valor atualmente exibido no visor
     	 */
     	double valor = Double.parseDouble( lblTelaVisor.getText() );
+      System.out.println(valor);
     	double resultado = 0;
 
     	if ( buffer != 0 && lastOperation != "" ) {
@@ -233,7 +234,7 @@ public class Calculadora extends JFrame implements ActionListener {
 
         	//ao final, reseta o buffer e lastOperation
         	buffer = 0;
-        	lastOperation = "";    		
+        	lastOperation = "";
     	}
     }
 
