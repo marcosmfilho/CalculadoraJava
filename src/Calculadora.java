@@ -215,7 +215,10 @@ public class Calculadora extends JFrame implements ActionListener {
       	System.out.println("Deixa de embassar rapaz!!!!");
 
         System.out.println("Acabei de mudar aqui oh!!!");
-
+        System.out.println(valor);
+        System.out.println("RESPEITA TU BICHOOOOOOOOOOOOO");
+        System.out.println("CONFLITO");
+        
     	double resultado = 0;
 
     	if ( buffer != 0 && lastOperation != "" ) {
