@@ -212,6 +212,7 @@ public class Calculadora extends JFrame implements ActionListener {
     	 */
     	double valor = Double.parseDouble( lblTelaVisor.getText() );
       System.out.println(valor);
+      System.out.println("RESPEITA TU BICHOOOOOOOOOOOOO");
     	double resultado = 0;
 
     	if ( buffer != 0 && lastOperation != "" ) {
