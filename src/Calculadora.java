@@ -211,7 +211,8 @@ public class Calculadora extends JFrame implements ActionListener {
     	 * Valor atualmente exibido no visor
     	 */
     	double valor = Double.parseDouble( lblTelaVisor.getText() );
-      System.out.println(valor);
+      	System.out.println(valor);
+      	System.out.println("Deixa de embassar rapaz!!!!");
     	double resultado = 0;
 
     	if ( buffer != 0 && lastOperation != "" ) {
